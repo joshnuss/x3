@@ -3,21 +3,17 @@ defmodule X3.Interpreter.Test do
 
   import X3.Interpreter
 
-  test "addition" do
-    assert eval({:+, 1, 2}) == 3
-  end
+  test "addition",
+    do: assert eval({:+, 1, 2}) == 3
 
-  test "subtraction" do
-    assert eval({:-, 7, 2}) == 5
-  end
+  test "subtraction",
+    do: assert eval({:-, 7, 2}) == 5
 
-  test "division" do
-    assert eval({:/, 7, 2}) == 3.5
-  end
+  test "division",
+    do: assert eval({:/, 7, 2}) == 3.5
 
-  test "multiplication" do
-    assert eval({:*, 7, 2}) == 14
-  end
+  test "multiplication",
+    do: assert eval({:*, 7, 2}) == 14
 
   test "equality" do
     refute eval({:==, 7, 2})
