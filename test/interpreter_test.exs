@@ -3,21 +3,42 @@ defmodule X3.Interpreter.Test do
 
   import X3.Interpreter
 
-  test "addition",
-    do: assert eval({:+, 1, 2}) == 3
+  describe "literals" do
+    test "addition",
+      do: assert eval({:+, 1, 2}) == 3
 
-  test "subtraction",
-    do: assert eval({:-, 7, 2}) == 5
+    test "subtraction",
+      do: assert eval({:-, 7, 2}) == 5
 
-  test "division",
-    do: assert eval({:/, 7, 2}) == 3.5
+    test "division",
+      do: assert eval({:/, 7, 2}) == 3.5
 
-  test "multiplication",
-    do: assert eval({:*, 7, 2}) == 14
+    test "multiplication",
+      do: assert eval({:*, 7, 2}) == 14
 
-  test "equality" do
-    refute eval({:==, 7, 2})
-    assert eval({:==, 7, 7})
+    test "equality" do
+      refute eval({:==, 7, 2})
+      assert eval({:==, 7, 7})
+    end
+  end
+
+  describe "sub-expressions" do
+    test "addition",
+      do: assert eval({:+, {:+, 2, 3}, {:+, 4, 5}}) == 14
+
+    test "subtraction",
+      do: assert eval({:-, {:+, 2, 3}, {:+, 4, 5}}) == -4
+
+    test "division",
+      do: assert eval({:/, {:+, 4, 5}, {:+, 1, 1}}) == 4.5
+
+    test "multiplication",
+      do: assert eval({:*, {:+, 4, 5}, {:+, 3, 1}}) == 36
+
+    test "equality" do
+      refute eval({:==, {:+, 3, 4}, {:+, 2, 2}})
+      assert eval({:==, {:+, 3, 4}, {:+, 4, 3}})
+    end
   end
 
   test "raises when unknown expression" do
