@@ -56,6 +56,56 @@ defmodule X3.Interpreter.Test do
 
       assert eval(expressions) == 10
     end
+
+    test "addition" do
+      expressions = [
+        {:declare, :x, 20},
+        {:declare, :y, 2},
+        {:+, {:ref, :x}, {:ref, :y}}
+      ]
+
+      assert eval(expressions) == 22
+    end
+
+    test "subtraction" do
+      expressions = [
+        {:declare, :x, 20},
+        {:declare, :y, 2},
+        {:-, {:ref, :x}, {:ref, :y}}
+      ]
+
+      assert eval(expressions) == 18
+    end
+
+    test "division" do
+      expressions = [
+        {:declare, :x, 20},
+        {:declare, :y, 2},
+        {:/, {:ref, :x}, {:ref, :y}}
+      ]
+
+      assert eval(expressions) == 10
+    end
+
+    test "multiplication" do
+      expressions = [
+        {:declare, :x, 20},
+        {:declare, :y, 2},
+        {:*, {:ref, :x}, {:ref, :y}}
+      ]
+
+      assert eval(expressions) == 40
+    end
+
+    test "equality" do
+      expressions = [
+        {:declare, :x, 20},
+        {:declare, :y, 2}
+      ]
+
+      refute eval(expressions ++ [{:==, {:ref, :x}, {:ref, :y}}])
+      assert eval(expressions ++ [{:==, {:ref, :x}, {:ref, :x}}])
+    end
   end
 
   describe "list of expressions" do
