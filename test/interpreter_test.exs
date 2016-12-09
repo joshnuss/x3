@@ -47,6 +47,15 @@ defmodule X3.Interpreter.Test do
 
     test "expression declaration",
       do: assert eval({:declare, :x, {:+, 25, 75}}) == 100
+
+    test "reference" do
+      expressions = [
+        {:declare, :x, 10},
+        {:ref, :x}
+      ]
+
+      assert eval(expressions) == 10
+    end
   end
 
   describe "list of expressions" do
