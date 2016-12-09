@@ -42,8 +42,11 @@ defmodule X3.Interpreter.Test do
   end
 
   describe "variable" do
-    test "declaration",
+    test "literal declaration",
       do: assert eval({:declare, :x, 100}) == 100
+
+    test "expression declaration",
+      do: assert eval({:declare, :x, {:+, 25, 75}}) == 100
   end
 
   test "raises when unknown expression" do

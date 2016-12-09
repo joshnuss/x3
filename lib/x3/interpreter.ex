@@ -5,7 +5,7 @@ defmodule X3.Interpreter do
     do: apply(Kernel, operator, [eval(lhs), eval(rhs)])
 
   def eval({:declare, _name, value}),
-    do: value
+    do: eval(value)
 
   def eval(literal) when is_number(literal),
     do: literal
