@@ -3,7 +3,7 @@ defmodule X3.Interpreter.Test do
 
   import X3.Interpreter
 
-  describe "literals" do
+  describe "literal" do
     test "addition",
       do: assert eval({:+, 1, 2}) == 3
 
@@ -22,7 +22,7 @@ defmodule X3.Interpreter.Test do
     end
   end
 
-  describe "sub-expressions" do
+  describe "sub-expression" do
     test "addition",
       do: assert eval({:+, {:+, 2, 3}, {:+, 4, 5}}) == 14
 
