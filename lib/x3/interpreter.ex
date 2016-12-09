@@ -1,6 +1,12 @@
 defmodule X3.Interpreter do
   @arithmaticals ~w(+ - / * ==)a
 
+  def eval(list) when is_list(list) do
+    Enum.reduce list, nil, fn expression, _acc ->
+      eval(expression)
+    end
+  end
+
   def eval({operator, lhs, rhs}) when operator in @arithmaticals,
     do: apply(Kernel, operator, [eval(lhs), eval(rhs)])
 

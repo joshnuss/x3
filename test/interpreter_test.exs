@@ -49,6 +49,20 @@ defmodule X3.Interpreter.Test do
       do: assert eval({:declare, :x, {:+, 25, 75}}) == 100
   end
 
+  describe "list of expressions" do
+    test "more than zero" do
+      expressions = [
+        {:+, 5, 10},
+        {:+, 10, 20},
+      ]
+
+      assert eval(expressions) == 30
+    end
+
+    test "empty",
+      do: assert eval([]) == nil
+  end
+
   test "raises when unknown expression" do
     assert_raise RuntimeError, fn ->
       eval(:saywhatnow)
