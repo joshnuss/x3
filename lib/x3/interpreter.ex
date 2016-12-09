@@ -13,10 +13,12 @@ defmodule X3.Interpreter do
   end
 
   defp do_eval({operator, lhs, rhs}, binding) when operator in @arithmaticals do
-    {lhs, _binding} = do_eval(lhs, binding)
-    {rhs, _binding} = do_eval(rhs, binding)
+    arguments = [
+      eval(lhs, binding),
+      eval(rhs, binding)
+    ]
 
-    {apply(Kernel, operator, [lhs, rhs]), binding}
+    {apply(Kernel, operator, arguments), binding}
   end
 
   defp do_eval({:declare, name, value}, binding) do
