@@ -1,6 +1,8 @@
 defmodule X3.Interpreter do
-  def eval({op, lhs, rhs}) when op in ~w(+ - / * ==)a,
-    do: apply(Kernel, op, [lhs, rhs])
+  @arithmaticals ~w(+ - / * ==)a
+
+  def eval({operator, lhs, rhs}) when operator in @arithmaticals,
+    do: apply(Kernel, operator, [lhs, rhs])
 
   def eval(unknown),
     do: raise RuntimeError, "Unknown expression: #{inspect unknown}"
