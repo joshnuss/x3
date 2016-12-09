@@ -19,4 +19,10 @@ defmodule X3.Interpreter.Test do
     refute eval({:==, 7, 2})
     assert eval({:==, 7, 7})
   end
+
+  test "raises when unknown expression" do
+    assert_raise RuntimeError, fn ->
+      eval(:saywhatnow)
+    end
+  end
 end
