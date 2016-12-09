@@ -57,6 +57,16 @@ defmodule X3.Interpreter.Test do
       assert eval(expressions) == 10
     end
 
+    test "re-binding" do
+      expressions = [
+        {:declare, :x, 10},
+        {:declare, :x, 1},
+        {:ref, :x}
+      ]
+
+      assert eval(expressions) == 1
+    end
+
     test "addition" do
       expressions = [
         {:declare, :x, 20},
