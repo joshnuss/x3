@@ -41,6 +41,11 @@ defmodule X3.Interpreter.Test do
     end
   end
 
+  describe "variable" do
+    test "declaration",
+      do: assert eval({:declare, :x, 100}) == 100
+  end
+
   test "raises when unknown expression" do
     assert_raise RuntimeError, fn ->
       eval(:saywhatnow)
