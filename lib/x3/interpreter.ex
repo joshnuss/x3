@@ -13,8 +13,8 @@ defmodule X3.Interpreter do
   end
 
   defp do_eval({operator, lhs, rhs}, binding) when operator in @arithmaticals do
-    { lhs, _binding } = do_eval(lhs, binding)
-    { rhs, _binding } = do_eval(rhs, binding)
+    {lhs, _binding} = do_eval(lhs, binding)
+    {rhs, _binding} = do_eval(rhs, binding)
 
     {apply(Kernel, operator, [lhs, rhs]), binding}
   end
@@ -29,7 +29,7 @@ defmodule X3.Interpreter do
     do: {Map.fetch!(binding, name), binding}
 
   defp do_eval(literal, binding) when is_number(literal),
-    do: { literal, binding }
+    do: {literal, binding}
 
   defp do_eval(unknown, _binding),
     do: raise RuntimeError, "Unknown expression: #{inspect unknown}"
